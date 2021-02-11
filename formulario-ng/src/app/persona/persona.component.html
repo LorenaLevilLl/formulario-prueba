@@ -1,0 +1,95 @@
+
+<div class="contenedor">
+<form [formGroup]="form" (ngSubmit)="submit()">
+    <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <input  formControlName="nombre" id="nombre"  type="text"  class="form-control">
+        <div *ngIf="f.nombre.touched && f.nombre.invalid" class="alert alert-danger">
+        <div *ngIf="f.nombre.errors.required">Name is required.</div>
+        <div *ngIf="f.nombre.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="apellidos">Apellidos</label>
+        <input  formControlName="apellidos" id="apellidos"  type="text"  class="form-control">
+        <div *ngIf="f.apellidos.touched && f.apellidos.invalid" class="alert alert-danger">
+        <div *ngIf="f.apellidos.errors.required">Name is required.</div>
+        <div *ngIf="f.apellidos.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="rut">Rut</label>
+        <input  formControlName="rut" id="rut"  type="text"  class="form-control">
+        <div *ngIf="f.rut.touched && f.rut.invalid" class="alert alert-danger">
+        <div *ngIf="f.rut.errors.required">Name is required.</div>
+        <div *ngIf="f.rut.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="fechaNacimiento">Fecha de Nacimiento</label>
+        <input  formControlName="fechaNacimiento" id="fechaNacimiento"  type="text"  class="form-control">
+        <div *ngIf="f.fechaNacimiento.touched && f.fechaNacimiento.invalid" class="alert alert-danger">
+        <div *ngIf="f.fechaNacimiento.errors.required">Name is required.</div>
+        <div *ngIf="f.fechaNacimiento.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="region">Region</label>
+          <select formControlName="region" id="region" class="form-control">
+            <option *ngFor="let region of regionesList">
+              {{region.region}}
+            </option>
+          </select>
+    </div>
+
+
+    
+    <div class="form-group">
+       <div class="form-group">
+        <label for="comuna">Comuna</label>
+            <select formControlName="comuna" id="comuna"  type="text"  class="form-control">
+              <option *ngFor="let comuna of comunasList">
+                {{comuna.name}}
+              </option>
+            </select>
+       </div>
+    </div>
+
+    <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <input  formControlName="direccion" id="direccion"  type="text"  class="form-control">
+        <div *ngIf="f.direccion.touched && f.direccion.invalid" class="alert alert-danger">
+        <div *ngIf="f.direccion.errors.required">Name is required.</div>
+        <div *ngIf="f.direccion.errors.minlength">Name should be 3 character.</div>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="email">Email</label>
+        <input formControlName="email" id="email" type="text" class="form-control">
+        <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger">
+            <div *ngIf="f.email.errors.required">Email is required.</div>
+            <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+        </div>
+    </div>
+
+   
+
+    <div class="form-group">
+        <label for="fotoPerfil">Foto Perfil</label>
+        <textarea  formControlName="fotoPerfil" id="body"  type="text" class="form-control">
+        </textarea>
+        <div *ngIf="f.fotoPerfil.touched && f.fotoPerfil.invalid" class="alert alert-danger">
+          <div *ngIf="f.fotoPerfil.errors.required">Body is required.</div>
+        </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit">Enviar</button>
+
+</form>
+
+</div>

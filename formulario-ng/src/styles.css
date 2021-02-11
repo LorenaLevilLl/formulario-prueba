@@ -1,0 +1,380 @@
+/* You can add global styles to this file, and also import other style files */
+
+*{
+    font-size: 99%!important;
+  }
+  
+  .body{
+    min-height: 78vh;
+    margin: 0 10px!important;
+  }
+  
+  body.disabled-scroll {
+    overflow-y: hidden;
+  }
+  /**********************************************/
+  /*input styles*/
+  .ui-dropdown{
+    width:100%!important;
+  }
+  
+  .ui-autocomplete{
+    width: 80%!important;
+  }
+  label {
+    color:#333!important;
+    font-size:0.9em!important;
+    text-align: left;
+    display: block;
+    margin-bottom: 0px!important
+  }
+  .ui-dropdown .ui-dropdown-clear-icon {
+    color: #888888;
+    display: none;
+  }
+  .ui-inputtext{
+    padding: 1px 5px!important;
+    width: 100%;
+  }
+  .ui-autocomplete{
+    width: 87%!important;
+    margin: 0!important;
+    padding: 0px!important;
+  }
+  .ui-autocomplete .ui-autocomplete-input {
+    padding-right: 0!important;
+    font-size: .85em!important;
+  }
+  
+  .autogestion .ui-autocomplete .ui-autocomplete-input {
+    height: 24px!important;
+  }
+  
+  /*preloader input*/
+  .ui-autocomplete-dd .ui-autocomplete-loader {
+    right: -18px;
+    top: 14px;
+  }
+  .ui-autocomplete .ui-button-icon-only,
+  .ui-autocomplete .ui-button-icon-only:enabled:hover,
+  .ui-autocomplete .ui-button-icon-only:enabled:focus,
+  .ui-autocomplete .ui-button-icon-only:enabled:active{
+    position: absolute;
+  }
+  .ui-calendar{
+    width:87%!important;
+  }
+  /*input required*/
+  .ui-messages-error {
+    color: #dc3545;
+    background-color: #fff;
+    border-color: #ffcbc8;
+    padding: 3px;
+    border-radius: 3px;
+    width: 100%;
+    font-weight: 600;
+    font-size: .8em!important;
+  }
+  
+  /*disabled*/
+  .ui-state-disabled, .ui-widget:disabled {
+    opacity: 0.7!important;
+  
+  }
+  textarea {
+    width:95%;
+  }
+  
+  /**********************************************/
+  /* tabs styles*/
+  /*.ui-tabview .ui-widget-header {
+    border: none!important;
+  }*/
+  .ui-tabview .ui-tabview-nav {
+    margin: 0 1em;
+    border:none!important;
+  }
+  .ui-state-active a {
+    color: #212121;
+    background: #2399e5;
+    color: #fff;
+    border: 0px!important;
+    border-radius: 4px 4px 0 0;
+  }
+  .ui-tabview .ui-tabview-nav > li.ui-state-default {
+    background: #ebedf0;
+    border: none!important;
+    border-radius: 4px 4px 0 0;
+  }
+  .ui-tabview .ui-tabview-nav>li.ui-state-default:hover {
+    background-color: #2399e5;
+    color:#fff;
+  }
+  
+  /**********checkbox style**********************/
+  .ui-datatable .ui-selection-column .ui-chkbox-box, .ui-datatable .ui-selection-column .ui-radiobutton-box {
+    display: block;
+    margin: 0 auto;
+  }
+  /**********************************************/
+  /*toolstip styles*/
+  .ui-tooltip{
+    min-height: 30px;
+    padding: 5px;
+  }
+  .ui-tooltip-text{
+    font-size: .8em;
+    padding: 0 15px;
+    text-align: center;
+  }
+  /**********************************************/
+  /*panel style*/
+  span.ui-panel-title{
+    font-weight: 600;
+  }
+  .ui-panel-titlebar-icon {
+    border: none!important;
+    background: transparent!important;
+  }
+  
+  /***********IMGS***********/
+  .flag{
+    height:20px;
+    border-radius: 2px;
+  }
+  .email{
+    height:30px;
+    border-radius: 4px;
+  }
+  .ball{
+    height: 20px;
+  }
+  /*ball semaforo*/
+  .ball-green{
+    width: 15px;
+    height:15px;
+    background: #5cb85c;
+    margin: 0 auto;
+    display: block;
+    border-radius:50%;
+  }
+  .ball-red{
+    width: 15px;
+    height:15px;
+    background: #d9534f;
+    margin: 0 auto;
+    display: block;
+    border-radius:50%;
+  }
+  .ball-gray{
+    width: 15px;
+    height:15px;
+    background: gray;
+    margin: 0 auto;
+    display: block;
+    border-radius:50%;
+  }
+  .ball-yellow{
+    width: 15px;
+    height:15px;
+    background:#f0ad4e;
+    margin: 0 auto;
+    display: block;
+    border-radius:50%;
+  }
+  /******************BUTTONS COLOR********************/
+  .ui-button{
+    width:100%;
+  }
+  
+  .buttonTable{
+    width: 20px!important;
+    height:20px!important;
+    display: inline!important;
+  }
+  
+  .buttonPrimary{
+    color: #FFFFFF;
+    background: #2399e5;
+    transition: background-color .2s;
+    width: 100%;
+    margin-top:16px;
+    height:30px!important;
+  }
+  
+  .filterAdvanced{
+    color: #2399e5;
+    padding: 0 8px;
+    cursor: pointer;
+  }
+  
+  .buttonFilter{
+    width: 100%;
+    margin-top:16px;
+    transition: background-color .2s;
+  }
+  
+  .success{
+    background: #5cb85c!important;
+    border: 1px solid #5cb85c!important;
+  }
+  .success:hover{
+    background: #71ab71!important;
+    border: 1px solid #71ab71!important;
+  }
+  .warning{
+    background: #f0ad4e!important;
+    border: 1px solid #f0ad4e!important;
+  }
+  .danger{
+    background: #d9534f!important;
+    border: 1px solid #d9534f!important;
+  }
+  .danger:hover{
+    background: #b13a36!important;
+    border: 1px solid #b13a36!important;
+  }
+  /**********************************************/
+  /*dialog styles*/
+  .ui-dialog.ui-widget {
+    width: 20%;
+  }
+  @media (max-width: 640px){
+    .ui-dialog.ui-widget{
+      width: 90%;
+    }
+  }
+  /*dialog confirm styles*/
+  .ui-confirmdialog .ui-dialog-content .ui-confirmdialog-message {
+    font-size: 1.5em!important;
+    text-align: center!important;
+    margin: 0 auto;
+    display: block;
+  }
+  .ui-confirmdialog .ui-dialog-content .fa {
+    font-size: 5em!important;
+    color: #1f89ce;
+    vertical-align: middle!important;
+    display: block!important;
+    margin: 0 auto!important;
+    text-align: center!important;
+  }
+  .ui-dialog.ui-widget .ui-dialog-titlebar .ui-dialog-title {
+    font-weight: 700;
+    margin: 0 1em;
+  }
+  .ui-dialog-footer {
+    padding: 1em;
+    border: none;
+    border-top: 1px solid #eeeeee;
+  }
+  .ui-dialog .ui-widget .ui-dialog-titlebar .ui-dialog-title {
+    font-size: 1.25em;
+    color: #2a4c65;
+    font-weight: 700;
+  }
+  .ui-confirmdialog  .ui-widget-content .ui-button  {
+    width: 100%;
+  }
+  .dialog-create .ui-dialog-content  {
+    min-height: 350px;
+  }
+  .ui-datepicker  .ui-confirmdialog{
+    z-index: 999999!important;
+  
+  }
+  .ui-dialog .ui-widget-header{
+    font-weight: 700;
+  }
+  
+  /*opacity modal*/
+  .ui-widget-overlay {
+    opacity: .8;
+  }
+  
+  /*icon table expanded*/
+  .ui-datatable .ui-rowgroup-header a {
+    float:left;
+    font-size:1.5em!important;
+    margin: 0 .5em;
+  }
+  
+  .ui-datatable .ui-datatable-data tr.ui-rowgroup-header td a, .ui-datatable .ui-datatable-data tr.ui-rowgroup-header td span.ui-rowgroup-header-name{
+    display: block!important;
+  }
+  
+  .inputGroupEspecial .ui-g-1 {
+    width: 12.5%;
+  }
+  .inputGroupEspecial .ui-g-5{
+    padding: .2em .1em!important;
+  }
+  
+  /**********************************************/
+  /*Table styles*/
+  span.ui-column-title {
+    font-size: .85em;
+    /* line-height: .95; */
+  }
+  .ui-datatable {
+    text-align: center!important;
+    font-size: .9em!important;
+  }
+  .ui-datatable .ui-dropdown{
+    width: auto!important;
+  }
+  p-header {
+    font-weight: 700;
+  }
+  .ui-datatable .ui-datatable-thead>tr>th, .ui-datatable .ui-datatable-tfoot>tr>td, .ui-datatable .ui-datatable-data>tr>td{
+    margin:0;
+    padding:.2em;
+  }
+  
+  /**********************************************/
+  /*Table styles*/
+  .division{
+    border-left:2px solid #ccc!important;
+  }
+  span.ui-column-title {
+    font-size: .85em;
+    /* line-height: .95; */
+  }
+  ui-panel-title{
+    font-weight: 700;
+  }
+  .ui-datatable {
+    text-align: center!important;
+    font-size: .9em!important;
+  }
+  /*buttons styles*/
+  .btnFiles{
+    width:100%;
+    background: #125886!important;
+    border: none!important;
+    padding:0;
+    height:30px!important;
+  }
+  .labelFiles{
+    color:#fff!important;
+    padding: 6px 0;
+    text-align: center;
+    width:100%;
+    background: #125886!important;
+    margin-top: 16px;
+    border-radius: 3px;
+    cursor: pointer;
+    height:30px!important;
+  }
+  input.choose{
+    display: none;
+    height:30px!important;
+  }
+  
+  
+  .ui-inputswitch-off,.ui-inputswitch-on{
+    width: 20px!important;
+  }
+  
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
