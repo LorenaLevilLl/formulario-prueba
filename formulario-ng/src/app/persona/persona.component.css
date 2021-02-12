@@ -7,3 +7,10 @@
     justify-content: center;
     align-items: center;
   }
+
+
+.form-error-message {
+        color: red;
+        font-size: .75em;
+        padding-left: 16px;
+}

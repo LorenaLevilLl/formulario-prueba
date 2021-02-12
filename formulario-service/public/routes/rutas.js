@@ -16,6 +16,7 @@ api.get('/pruebas', userController.pruebas);
 api.get('/add', userController.addUser);
 
 api.post('/add', userController.addUser);
+api.post('/validaRut', userController.existeRut);
  
 // Exportamos la configuración
 module.exports = api;

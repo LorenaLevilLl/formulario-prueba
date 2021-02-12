@@ -17,7 +17,7 @@ export class PersonaService {
     //this.headers = this.headers.append('Authorization', 'Basic ' + btoa(environment.user + ':' + environment.password));
   }
 
-addUsuario(request:PersonaModel){   
+addUsuario(request:PersonaModel):Promise<any>{   
     return this.http.post('http://localhost:3000/api/add',request, {
         headers: this.headers,
       }).toPromise();
@@ -33,6 +33,13 @@ getRegiones():Promise<RegionModel[]>{
   return this.http.get<RegionModel[]>('https://e0a248af-6cfd-44d6-bec2-6c97ee008709.mock.pstmn.io/regiones-y-comunas', {
     headers: this.headers,
   }).toPromise();
+}
+
+validaRut(rut:string): Promise<any>{   
+  let request = {rut : rut}
+  return this.http.post('http://localhost:3000/api/validaRut',request, {
+      headers: this.headers,
+    }).toPromise();
 }
 
 /*getRegiones():Promise<RegionModel[]>{

@@ -1,3 +1,4 @@
+import {ArchivoModel} from '../model/archivo.model';
 export class PersonaModel {
     nombre: string;
     apellidos: String;
@@ -7,22 +8,10 @@ export class PersonaModel {
     comuna: String;
     direccion: String;
     email: String;
-    fotoPerfil: String;
+    fotoPerfil: ArchivoModel;
 
     constructor(){
 
     }
 
-   /* constructor(nombre: string,apellidos: string, rut: string, fechaNacimiento: string, 
-        region: string, comuna: string, direccion: string,email:string, fotoPerfil:string){
-      this.nombre = nombre;
-      this.apellidos = apellidos ;
-      this.rut= rut;
-      this.fechaNacimiento= fechaNacimiento;
-      this.region= region;
-      this.comuna= comuna;
-      this.direccion= direccion;
-      this.email= email;
-      this.fotoPerfil= fotoPerfil;
-    }*/
   }
