@@ -17,6 +17,7 @@ api.get('/add', userController.addUser);
 
 api.post('/add', userController.addUser);
 api.post('/validaRut', userController.existeRut);
+api.post('/validaDv', userController.validaDv);
  
 // Exportamos la configuración
 module.exports = api;
