@@ -4,10 +4,10 @@ const mongoose = require('mongoose');
 //mongoose.connect('mongodb://localhost:27017/db-formulario');
 require('../../model/user');
 
-mongoose.connect('mongodb://localhost:27017/db-formulario', {
-        useCreateIndex: true,
-        useFindAndModify: false,
-        useNewUrlParser: true
+mongoose.connect('mongodb://mongo/db-formulario', {
+    useCreateIndex: true,
+    useNewUrlParser: true,
+    useUnifiedTopology: true
     }).then(db => console.log('conexion exitosa'))
     .catch(err => console.log('error: ', err));
 

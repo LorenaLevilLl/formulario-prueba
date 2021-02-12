@@ -14,3 +14,18 @@
         font-size: .75em;
         padding-left: 16px;
 }
+
+.modal-contenido{
+  background-color: rgb(225, 233, 232);
+  width: 212px;
+  height: 50px;
+  padding: 41px 14px;
+  margin: 0% auto;
+  position: relative;
+  align-content: center;
+  padding-top: 10px;
+}
+.modal{
+  background-color: rgba(0,0,0,.8);
+  position:fixed;
+}

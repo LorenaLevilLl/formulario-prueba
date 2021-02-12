@@ -18,13 +18,13 @@ export class PersonaService {
   }
 
 addUsuario(request:PersonaModel):Promise<any>{   
-    return this.http.post('http://localhost:3000/api/add',request, {
+    return this.http.post('http://localhost:8080/api/add',request, {
         headers: this.headers,
       }).toPromise();
 }
 
 getPrueba():Promise<any>{
-  return this.http.get('http://localhost:3000/api/pruebas', {
+  return this.http.get('http://localhost:8080/api/pruebas', {
     headers: this.headers,
   }).toPromise();
 }
@@ -37,7 +37,14 @@ getRegiones():Promise<RegionModel[]>{
 
 validaRut(rut:string): Promise<any>{   
   let request = {rut : rut}
-  return this.http.post('http://localhost:3000/api/validaRut',request, {
+  return this.http.post('http://localhost:8080/api/validaRut',request, {
+      headers: this.headers,
+    }).toPromise();
+}
+
+validaDv(rut:string): Promise<any>{   
+  let request = {rut : rut}
+  return this.http.post('http://localhost:8080/api/validaDv',request, {
       headers: this.headers,
     }).toPromise();
 }
