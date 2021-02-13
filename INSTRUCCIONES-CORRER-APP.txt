@@ -1,0 +1,11 @@
+1- Clonar respositorio de https://github.com/LorenaLevilLl/formulario-prueba.git
+Levantar servicio
+2- Ingresar a un terminal a la carpeta correspondiente a formulario-service
+3- Ejecutar comando => docker-compose build 
+4- Luego ejecutar comando => docker-compose up
+
+Levantar front (turve problemas con docker-compose en esta parte asi que ejecutarlo solo con los camandos docker)
+5- docker build -t formulario-ng:latest .
+6- docker run -p 3000:80 formulario-ng
+
+7- visualizar aplicación desde localhost:3000 en el navegador
