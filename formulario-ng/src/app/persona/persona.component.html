@@ -85,15 +85,24 @@
         <input type="file" name="archivo"  id="fotoPerfil" (change)="onFileChange($event)" multiple/>
 
     </div>
-
-    <button class="btn btn-primary" type="submit">Enviar</button>
+    <span></span>
+    <button type=submit id="myBtn" class="btn btn-primary" type="submit">Enviar</button>
 
 </form>
 
 <div id="miModal" *ngIf="exitoCrear == true"  class="modal">
-    <div class="modal-contenido">
-      <h2>success</h2>
+    <div class="modal-content">
+      <span class="close" (click)="cerraModal()">&times;</span>
+      <h2>Success</h2>
       <p>Exito al guardar el usuario</p>
     </div>  
   </div>
+</div>
+
+<div id="miModalError" *ngIf="errorCrear == true"  class="modal">
+  <div class="modal-content">
+    <span class="close" (click)="cerraModal()">&times;</span>
+    <h2>Error</h2>
+    <p>Error al guardar el usuario{{message}}</p>
+  </div>  
 </div>

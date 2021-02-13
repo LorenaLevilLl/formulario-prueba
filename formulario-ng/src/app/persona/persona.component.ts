@@ -23,6 +23,8 @@ export class PersonaComponent implements OnInit {
   existeRut = false;
   proceso = false;
   exitoCrear = false;
+  message = 'Error';
+  errorCrear = false;
   public filesToUpload: Array<File>;
   form = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -71,12 +73,10 @@ export class PersonaComponent implements OnInit {
       });
     });
 
-    this.form.controls['fotoPerfil'].valueChanges.subscribe(value => {
+   /* this.form.controls['fotoPerfil'].valueChanges.subscribe(value => {
       console.log('foto ingresada :: ', value);
       var files = value;
-
-
-    });
+    });*/
   }
 
   pocessImg(evt) {
@@ -121,7 +121,6 @@ export class PersonaComponent implements OnInit {
     console.log('rut' + this.form.controls['rut'].status);
     console.log('region' + this.form.controls['region'].status);
     console.log('comuna' + this.form.controls['comuna'].status);
-    console.log('fotoPerfil' + this.form.controls['fotoPerfil'].status);
   }
 
   onFileChange(event) {
@@ -180,6 +179,11 @@ export class PersonaComponent implements OnInit {
 
     return promise;
 
+  }
+
+  cerraModal(){
+    this.exitoCrear = false;
+    this.errorCrear = false;
   }
 
 
