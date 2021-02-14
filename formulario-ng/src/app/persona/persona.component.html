@@ -90,7 +90,7 @@
 
 </form>
 
-<div id="miModal" *ngIf="exitoCrear == true"  class="modal">
+<div id="miModal" *ngIf="exitoCrear === true"  class="modal">
     <div class="modal-content">
       <span class="close" (click)="cerraModal()">&times;</span>
       <h2>Success</h2>
@@ -99,7 +99,7 @@
   </div>
 </div>
 
-<div id="miModalError" *ngIf="errorCrear == true"  class="modal">
+<div id="miModalError" *ngIf="errorCrear === true"  class="modal">
   <div class="modal-content">
     <span class="close" (click)="cerraModal()">&times;</span>
     <h2>Error</h2>

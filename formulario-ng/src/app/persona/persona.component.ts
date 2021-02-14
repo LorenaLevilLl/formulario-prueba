@@ -105,8 +105,10 @@ export class PersonaComponent implements OnInit {
       this.persona.fotoPerfil = this.archivo;
       this.personaService.addUsuario(this.persona).then(response => {
         console.log('RESPONSEEE ::', response);
-        if(response.response.codigo == 200){
+        if(response.status == true){
           this.exitoCrear = true;
+        }else {
+          this.errorCrear = true;
         }
       });
     } else {

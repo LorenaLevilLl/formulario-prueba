@@ -14,4 +14,3 @@ afterEach(async () => await dbHandler.clearDatabase());
  * Remove and close the db and server.
  */
 afterAll(async () => await dbHandler.closeDatabase());
-

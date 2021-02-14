@@ -25,9 +25,11 @@ const addUsuario = function (req) {
   return new Promise(((resolve, reject) => {
     usuario.save((err) => {
       if (err) {
-        reject(err);
+        // eslint-disable-next-line prefer-promise-reject-errors
+        const error = 'Error '+err;
+        reject({ status: true, message: error });
       } else {
-        resolve({ codigo: 200, message: 'successfully' });
+        resolve({ status: true, message: 'successfully' });
       }
     });
   }));
@@ -36,11 +38,11 @@ const addUsuario = function (req) {
 // eslint-disable-next-line func-names
 const existeRut = function (req) {
   const rutReq = req.body.rut || '';
-  //const usuario = new Modeluser();
+  // const usuario = new Modeluser();
   console.log('verificando si existeRut');
   return new Promise(((resolve, reject) => {
     Modeluser.find({
-      rut: rutReq
+      rut: rutReq,
     }, (err, a) => {
       if (err) {
         reject(err);
@@ -48,37 +50,37 @@ const existeRut = function (req) {
         console.log('paso por qui');
         resolve({
           status: true,
-          menssage: 'Rut ya existe'
+          menssage: 'Rut ya existe',
         });
       } else {
         console.log('paso por quo');
         resolve({
           status: false,
-          menssage: 'Rut no existe'
+          menssage: 'Rut no existe',
         });
       }
     });
   }));
 };
 
-var findAddress = function (req) {
+const findAddress = function (req) {
   const rutReq = req.body.rut || '';
   const usuario = new Modeluser();
-  return new Promise(function (resolve, reject) {
-    usuario.find({ rut : rutReq }, function (err, doc) {
-          if (err) {
-              reject(err);
-          } else {
-              console.log('uus :: ', doc);
-              resolve(doc);
-          }
-      })
-  })
+  return new Promise(((resolve, reject) => {
+    usuario.find({ rut: rutReq }, (err, doc) => {
+      if (err) {
+        reject(err);
+      } else {
+        console.log('uus :: ', doc);
+        resolve(doc);
+      }
+    });
+  }));
 };
 
 /**
  * Ontiene el digito verificar de un rut sin puntos ni guiones
- * @param {} rut 
+ * @param {} rut
  */
 function getDigitoV(req) {
   const rut = req.body.rut || '';
@@ -90,12 +92,12 @@ function getDigitoV(req) {
   for (let i = rut.length - 1; i >= 0; i--) {
     const d = rut.charAt(i);
     sum += new Number(d) * secuencia[rut.length - (i + 1)];
-  };
+  }
   const rest = 11 - (sum % 11);
-  return rest === 11 ? 0 : rest === 10 ? "k" : rest;
+  return rest === 11 ? 0 : rest === 10 ? 'k' : rest;
 }
 
 
 module.exports = {
-  existeRut, getDigitoV, addUsuario, findAddress
+  existeRut, getDigitoV, addUsuario, findAddress,
 };
