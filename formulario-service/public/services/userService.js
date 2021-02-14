@@ -26,7 +26,7 @@ const addUsuario = function (req) {
     usuario.save((err) => {
       if (err) {
         // eslint-disable-next-line prefer-promise-reject-errors
-        const error = 'Error '+err;
+        const error = `Error ${err}`;
         reject({ status: true, message: error });
       } else {
         resolve({ status: true, message: 'successfully' });
