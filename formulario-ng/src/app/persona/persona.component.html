@@ -31,7 +31,7 @@
 
     <div class="form-group">
         <label for="fechaNacimiento">Fecha de Nacimiento</label>
-        <input  formControlName="fechaNacimiento" id="fechaNacimiento"  type="text"  class="form-control">
+        <input  formControlName="fechaNacimiento" id="fechaNacimiento"  type="date"  class="form-control">
         <div class='form-error-message'  *ngIf="f.fechaNacimiento.touched && f.fechaNacimiento.invalid" class="alert alert-danger">
         <div class='form-error-message'   *ngIf="f.fechaNacimiento.errors.required">Fecha de nacimiento es requerida.</div>
         <div class='form-error-message'  *ngIf="f.fechaNacimiento.errors.minlength">Fecha de nacimiento deberia tener mas de 3 caracteres.</div>
@@ -99,10 +99,10 @@
   </div>
 </div>
 
-<div id="miModalError" *ngIf="errorCrear === true"  class="modal">
+<div id="miModalError" *ngIf="errorCrear === true || noEsMayorEdad === true || archivoSuperaMax == true"  class="modal">
   <div class="modal-content">
     <span class="close" (click)="cerraModal()">&times;</span>
     <h2>Error</h2>
-    <p>Error al guardar el usuario{{message}}</p>
+    <p>{{message}}</p>
   </div>  
 </div>

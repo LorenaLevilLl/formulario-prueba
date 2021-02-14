@@ -17,6 +17,7 @@ const userShema = mongoose.Schema({
   fechaNacimiento: {
     type: Date,
     default: new Date(),
+    required: true,
   },
   rut: {
     type: String,

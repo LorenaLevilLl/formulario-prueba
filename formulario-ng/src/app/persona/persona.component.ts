@@ -7,6 +7,7 @@ import { ComunaModel } from '../model/comuna.model';
 import { ArchivoModel } from '../model/archivo.model';
 import { ConstantPool } from '@angular/compiler';
 import { isGeneratedFile } from '@angular/compiler/src/aot/util';
+import { connectableObservableDescriptor } from 'rxjs/internal/observable/ConnectableObservable';
 
 @Component({
   selector: 'app-persona',
@@ -14,8 +15,10 @@ import { isGeneratedFile } from '@angular/compiler/src/aot/util';
   styleUrls: ['./persona.component.css']
 })
 export class PersonaComponent implements OnInit {
-  regionesList: RegionModel[];
+  regionesList: RegionModel[] = [];
   comunasList: ComunaModel[] = [];
+  regionSeleccionada : RegionModel = new RegionModel();
+  comunaSeleccionada : string = '';
   archivo: ArchivoModel = null;
   persona: PersonaModel = new PersonaModel();
   archivoAux = null;
@@ -25,14 +28,18 @@ export class PersonaComponent implements OnInit {
   exitoCrear = false;
   message = 'Error';
   errorCrear = false;
+  noEsMayorEdad = false;
+  edadUsuario = 0;
+   maxByte: number = 2000000;
+   archivoSuperaMax = false;
   public filesToUpload: Array<File>;
   form = new FormGroup({
     nombre: new FormControl('', [Validators.required, Validators.minLength(3)]),
     apellidos: new FormControl('', [Validators.required, Validators.minLength(3)]),
     rut: new FormControl('', [Validators.required, Validators.minLength(3)]),
     fechaNacimiento: new FormControl(''),
-    region: new FormControl('', [Validators.required, Validators.minLength(3)]),
-    comuna: new FormControl('', [Validators.required, Validators.minLength(3)]),
+    region: new FormControl(''),
+    comuna: new FormControl(''),
     direccion: new FormControl('', [Validators.required, Validators.minLength(3)]),
     email: new FormControl('', [Validators.required, Validators.email]),
     //fotoPerfil: new FormControl('')
@@ -43,13 +50,20 @@ export class PersonaComponent implements OnInit {
 
   ngOnInit(): void {
     this.personaService.getRegiones().then(response => {
-      this.regionesList = response;
-      this.comunasList = this.regionesList[0].comunas;
+      if(null != response && undefined != response && response.length > 0){
+        response.forEach(element => {
+          if (element.region_number == 'XIII' || element.region_number == 'X'){
+            this.regionesList.push(element);
+            this.regionSeleccionada = this.regionesList[0];
+            this.comunasList = this.regionesList[0].comunas;
+            this.comunaSeleccionada = this.comunasList[0].name;
+          }
+        });
+      }
     });
 
     this.form.controls['rut'].valueChanges.subscribe(value => {
       this.procesaRut(value).then(rep => {
-        console.log("Rus es valido :: " + rep);
         if (rep) {
           this.rutIsValid = true;
           this.personaService.validaRut(value).then(response => {
@@ -68,15 +82,26 @@ export class PersonaComponent implements OnInit {
       console.log('Region seleccionado :: ', value);
       this.regionesList.forEach(element => {
         if (value === element.region) {
+          this.regionSeleccionada = element;
           this.comunasList = element.comunas;
+          this.comunaSeleccionada = element.comunas[0].name;
         }
       });
     });
 
-   /* this.form.controls['fotoPerfil'].valueChanges.subscribe(value => {
-      console.log('foto ingresada :: ', value);
-      var files = value;
-    });*/
+    this.form.controls['comuna'].valueChanges.subscribe(value => {
+      this.comunaSeleccionada = value;
+    });
+
+    this.form.controls['fechaNacimiento'].valueChanges.subscribe(value => {
+       this.calcularEdad(value).then(edad => {
+         this.edadUsuario = edad;
+        if(edad <18){
+          this.message = 'El usuario no es mayor de edad, no puede ser registrado';
+          this.noEsMayorEdad = true;
+        }
+       });
+    });
   }
 
   pocessImg(evt) {
@@ -92,14 +117,14 @@ export class PersonaComponent implements OnInit {
   }
 
   submit() {
-    console.log('Antes de enviar el formulario', this.form.status);
     if (this.form.status === 'VALID') {
+      if(this.edadUsuario >=18){
       this.persona.nombre = this.form.value.nombre;
       this.persona.apellidos = this.form.value.apellidos;
       this.persona.rut = this.form.value.rut;
       this.persona.fechaNacimiento = this.form.value.fechaNacimiento;
-      this.persona.region = this.form.value.region;
-      this.persona.comuna = this.form.value.comuna;
+      this.persona.region = this.regionSeleccionada.region;
+      this.persona.comuna =  this.comunaSeleccionada;
       this.persona.direccion = this.form.value.direccion;
       this.persona.email = this.form.value.email;
       this.persona.fotoPerfil = this.archivo;
@@ -108,9 +133,14 @@ export class PersonaComponent implements OnInit {
         if(response.status == true){
           this.exitoCrear = true;
         }else {
+          this.message = 'Error al guardar usuario';
           this.errorCrear = true;
         }
       });
+    }else{
+      this.noEsMayorEdad = true;
+      this.message = 'el usuario no es mayor de edad, no puede ser registrado';
+    }
     } else {
       this.revisarValores();
     }
@@ -130,25 +160,42 @@ export class PersonaComponent implements OnInit {
 
     if (event.target.files && event.target.files.length) {
       const [file] = event.target.files;
-      console.log('Inicio procesando imagen');
       this.filesToUpload = <Array<File>>event.target.files;
-
       reader.readAsDataURL(file);
 
       reader.onload = () => {
         this.form.patchValue({
           file: reader.result
         });
-
         this.archivoAux = reader.result;
-        this.archivo = new ArchivoModel(this.archivoAux, this.filesToUpload[0].type);
-        //this.archivo = new ArchivoModel(reader.result,);
+        if(this.filesToUpload[0].size <= this.maxByte)  {
+          this.archivo = new ArchivoModel(this.archivoAux, this.filesToUpload[0].type);
+          console.log('tamaño del archivo :: ', this.filesToUpload[0].size);
+        }else{
+           this.archivoSuperaMax = true;
+           const tamanioEnMb = this.maxByte / 1000000;
+           this.message = 'La foto de perfil supera el maximo permitido de '+tamanioEnMb+ 'MB';
+        }
 
-        // need to run CD since file load runs outside of zone
-        //this.cd.markForCheck();
       };
     }
   }
+
+  calcularEdad(fechaNacimiento: Date): Promise<any>  {
+    let promise = new Promise((resolve, reject) => {
+      const fechaAux = Date.parse(fechaNacimiento.toString());
+      if (fechaAux) {
+          let timeDiff = Math.abs(Date.now() - <any>fechaAux);
+          let edad = Math.ceil((timeDiff / (1000 * 3600 * 24)) / 365) -1;
+          resolve(edad);
+      } else {
+        resolve(0);
+      }
+    });
+    
+    return promise;
+}
+
 
 
   clearVariables() {
@@ -186,6 +233,8 @@ export class PersonaComponent implements OnInit {
   cerraModal(){
     this.exitoCrear = false;
     this.errorCrear = false;
+    this.noEsMayorEdad = false;
+    this.archivoSuperaMax = false;
   }
 
 

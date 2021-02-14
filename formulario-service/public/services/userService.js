@@ -4,8 +4,8 @@ const Modeluser = require('../model/user');
 // eslint-disable-next-line func-names
 const addUsuario = function (req) {
   const usuario = new Modeluser();
-  const fechaAux = Date.parse(req.body.fechaNacimiento);
-  const fechaDef = new Date(fechaAux);
+  //const fechaAux = Date.parse(req.body.fechaNacimiento);
+  //const fechaDef = new Date(fechaAux);
 
   let foto = null;
   if (req.body.fotoPerfil != null) {
@@ -14,7 +14,7 @@ const addUsuario = function (req) {
 
   usuario.nombre = req.body.nombre || '';
   usuario.apellidos = req.body.apellidos || '';
-  usuario.fechaNacimiento = fechaDef;
+  usuario.fechaNacimiento = req.body.fechaNacimiento || '';
   usuario.rut = req.body.rut || '';
   usuario.email = req.body.email || '';
   usuario.direccion = req.body.direccion || '';

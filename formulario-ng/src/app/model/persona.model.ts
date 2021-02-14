@@ -3,7 +3,7 @@ export class PersonaModel {
     nombre: string;
     apellidos: String;
     rut: String;
-    fechaNacimiento: string;
+    fechaNacimiento: Date;
     region: String;
     comuna: String;
     direccion: String;
